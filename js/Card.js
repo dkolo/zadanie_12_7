@@ -23,6 +23,13 @@ function Card(id, name) {
 }
 Card.prototype = {
     removeCard: function() {
-        this.element.remove();
+        var self = this;
+        $.ajax({
+            url: baseUrl + '/card/' + self.id,
+            method: 'DELETE',
+            success: function() {
+                self.$element.remove();
+            }
+        });
     }
 }
