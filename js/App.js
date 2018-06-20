@@ -1,3 +1,23 @@
+// MODYFIKACJA URL API I NAGŁÓWKÓW
+
+var baseUrl = 'https://kodilla.com/pl/bootcamp-api';
+var myHeaders = {
+  'X-Client-Id': 'X-Client-Id',
+  'X-Auth-Token': 'X-Auth-Token'
+};
+
+$.ajaxSetup({
+	headers: myHeaders
+});
+
+$.ajax({
+    url: baseUrl + '/board',
+    method: 'GET',
+    success: function(response) {
+      setupColumns(response.columns);
+    }
+});
+
 // OGÓLNA FUNKCJA
 function randomString() {
     var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ'.split();
