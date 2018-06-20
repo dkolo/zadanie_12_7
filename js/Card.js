@@ -1,9 +1,9 @@
 // KLASA KANBAN CARD
-function Card(description) {
+function Card(id, name) {
     var self = this;
 
-    this.id = randomString();
-    this.description = description;
+    this.id = id;
+    this.name = name;
     this.element = createCard();
 
     function createCard() {
@@ -16,7 +16,7 @@ function Card(description) {
         });
 
         card.append(cardDeleteBtn);
-        cardDescription.text(self.description);
+        cardDescription.text(self.name);
         card.append(cardDescription)
         return card;
     }
