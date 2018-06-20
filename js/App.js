@@ -18,15 +18,13 @@ $.ajax({
     }
 });
 
-// OGÓLNA FUNKCJA
-function randomString() {
-    var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ'.split();
-    var str = '',
-        i;
-    for (i = 0; i < 10; i++) {
-        str += chars[Math.floor(Math.random() * chars.length)];
-    }
-    return str;
+// TWORZENIE KOLUMN
+
+function setupColumns(columns) {
+    columns.forEach(function (column) {
+  		var col = new Column(column.id, column.name);
+        board.createColumn(col);
+    });
 }
 
 // TWORZENIE NOWYCH EGZEMPLARZY KOLUMN
