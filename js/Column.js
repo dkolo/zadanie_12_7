@@ -12,11 +12,15 @@ function Column(id, name) {
         var columnTitle = $('<h2 class="column-title">' + self.name + '</h2>');
         var columnCardList = $('<ul class="card-list"></ul>');
         var columnDelete = $('<button class="btn-delete">x</button>');
+        var columnEdit = $('<button class="column-edit-btn">Edit</button>');
         var columnAddCard = $('<button class="column-add-card">Dodaj kartę</button>');
 
         // PODPINANIE ODPOWIEDNICH ZDARZEŃ POD WĘZŁY
         columnDelete.click(function() {
             self.deleteColumn();
+        });
+        columnEdit.click(function() {
+            self.editColumn(column);
         });
 
         columnAddCard.click(function(event) {
@@ -38,6 +42,7 @@ function Column(id, name) {
 
         // KONSTRUOWANIE ELEMENTU KOLUMNY
         column.append(columnTitle)
+            .append(columnEdit)
             .append(columnDelete)
             .append(columnAddCard)
             .append(columnCardList);
