@@ -12,7 +12,7 @@ function Column(id, name) {
         var columnTitle = $('<h2 class="column-title">' + self.name + '</h2>');
         var columnCardList = $('<ul class="card-list"></ul>');
         var columnDelete = $('<button class="btn-delete">x</button>');
-        var columnEdit = $('<button class="column-edit-btn">Edit</button>');
+        var columnEdit = $('<button class="column-edit-btn">Change column title</button>');
         var columnAddCard = $('<button class="column-add-card">Dodaj kartę</button>');
 
         // PODPINANIE ODPOWIEDNICH ZDARZEŃ POD WĘZŁY
@@ -52,6 +52,21 @@ function Column(id, name) {
 Column.prototype = {
     createCard: function(card) {
         this.element.children('ul').append(card.element);
+    },
+    editColumn: function(column) {
+        var newColumnTitle = prompt('Enter new column title');
+        var self = this;
+        this.name = newColumnTitle;
+        $.ajax({
+            url: baseUrl + '/column/' + self.id,
+            method: 'PUT',
+            data: {
+                name: newColumnTitle
+            },
+            success: function(response) {
+                self.element.children('h2').text(newColumnTitle);
+            }
+        });
     },
     deleteColumn: function() {
         var self = this;
